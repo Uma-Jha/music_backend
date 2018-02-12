@@ -1,0 +1,32 @@
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.background{
+    background-image: url("../static/images/bg3.jpg");
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-top: 100px;
+    padding-bottom: 250px;
+}
+
+input {
+    font-size: 13px;
+}
+
+.btn{
+    text-decoration: none !important;
+    color: #3E3E3E !important;
+    font-size: 16px;
+}
+
+.size {
+    font-size: 18px;
+    padding-right: 30px;
+}
+
+.big{
+    font-size: 18px;
+    text-align: left !important;
+    padding-left: 80px;
+}
