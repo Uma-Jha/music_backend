@@ -11,6 +11,6 @@ require('./config/routes.js')(app);
 app.get('/', (req, res) => {
     res.send("Up and running");
 })
-app.listen(3000, function() {
+app.listen(8000, function() {
     console.log("listening on port 8000");
 })
