@@ -79,6 +79,9 @@
               <p [hidden]="password2.valid || (password2.pristine && !theform.submitted)">
                 Password is required.
               </p>
+              <div *ngIf="error">
+                <p>{{error}}</p>
+              </div>
             </div>
             <button class="btn btn-primary" [disabled]="!theform.form.valid" type='submit'>Login</button>
           

@@ -16,6 +16,7 @@ export class DataService {
   artistList: String[] = []
   albumList: String[] = []
   labelList: String[] = []
+  loggeduser;
   url1 = "https://api.discogs.com/database/search?genre=";
   url2 = "&year=2017&token=nJHdKuWuygRtNWkLVpISAUzTXcccdzAJyXpwzSMj";
   score = 0
@@ -57,10 +58,8 @@ export class DataService {
         var j = 0
         while (j < 3) {
           let num = Math.floor(Math.random() * 20)
-          console.log(num+"trying to push this number to albArr");
           if (num != albRand){
             albArr.push(num)
-            console.log("pushing this to albArr"+num+"this is albArr"+albArr);
             j++
           } 
         }
@@ -99,12 +98,6 @@ export class DataService {
         }
   
         //unshuffled Album name options
-        console.log(
-          this.albumList[albRand],
-          this.albumList[albArr[0]], 
-          this.albumList[albArr[1]], 
-          this.albumList[albArr[2]]
-        )
         let alboptions = [
           this.albumList[albRand],
           this.albumList[albArr[0]], 
@@ -152,16 +145,9 @@ export class DataService {
   }
   apiGenre(genre) {
     this.populateData(genre);
-    console.log(this.actualQuestions);
-  }
-  getUsers() {
-    this._http.get('/users').subscribe(
-      tasks => {this.dataObserver.next(tasks.json()); console.log(tasks.json())},
-      errorResponse => console.log(errorResponse)
-    );
   }
   verifyUser(verifyUser) {
-    return this._http.post('/user', verifyUser).subscribe((res)=> res.json());
+    return this._http.post('/user', verifyUser);
    }
   createUser(user: User) { 
     this._http.post('/users', user).subscribe(

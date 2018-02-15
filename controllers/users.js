@@ -14,35 +14,24 @@ module.exports = {
     })
   },
   getUser: (req, res) => {
-    User.find({username:req.body.username, password: req.body.password}, function(err, user){
-      if(err) {
+    User.find({username:req.body.username}, function(err, user){
+      if(user.length > 0) {
+        console.log(user);
+        if(user[0].password != req.body.password){
+          var message = "Password is not correct";
+          res.json(message);
+          console.log()
+        }
+        else{
+          res.json(user[0]);
+      }
+     } 
+     else {
         console.log(err);
-      } else {
-        console.log("Got user")
-        res.send(user);
+        var message_two = "Username does not exist"
+        res.json(message_two)
       }
     })
       
-  },
-  delete: (req, res) => {
-    console.log("DELETE "+req.params.id);
-    User.remove({_id: req.params.id}, function(err){
-      if(err) {
-        console.log(err);
-      }
-      else {
-        res.send({"status":"success"})
-      }
-    });
-  },
-  update: (req, res) => {
-    User.update({_id: req.body._id }, req.body, function() {
-      if(err) {
-        console.log(err);
-      }
-      else {
-        res.send("USER UPDATED");
-      } 
-    });
   }
  }

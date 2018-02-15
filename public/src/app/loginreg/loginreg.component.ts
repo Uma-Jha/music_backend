@@ -16,6 +16,7 @@ export class LoginregComponent implements OnInit {
   user = new User()
   verifyUser = new Userexists()
   passwordConf: String = ""
+  error
   ngOnInit() {
   }
   onSubmit(f){ 
@@ -25,7 +26,22 @@ export class LoginregComponent implements OnInit {
   }
   verifyUserInfo(f){ 
     this.verifyUser = new Userexists(f.username, f.password)
-    this._dataService.verifyUser(this.verifyUser)
-    this.router.navigate(['/selectquiz']);       
+    let flag = this._dataService.verifyUser(this.verifyUser)
+    flag.subscribe(data => {
+      console.log("in reg_subscribe")
+      var body = JSON.parse(data['_body']);
+      if(body.username){
+        console.log("BODY USERNAME");
+        this.user = body;
+        this._dataService.loggeduser = this.user;
+        this.router.navigate(['/selectquiz']);
+      }
+      else{
+        console.log("No USERNAME");
+        this.error = body;
+        this.router.navigate(["/"]);
+      }
+     })
+    //this.router.navigate(['/selectquiz']);       
   }
 }

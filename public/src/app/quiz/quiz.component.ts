@@ -23,6 +23,7 @@ export class QuizComponent implements OnInit {
     if(this.questions.length>1){
       if(this.userAnswer==this.questions[0].answer)
       this._dataService.score = ++this.score
+      console.log("QQQQQ "+this.questions.length);
       this.questions.shift()
     }
     else {
